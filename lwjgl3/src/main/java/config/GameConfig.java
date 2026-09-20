@@ -1,5 +1,4 @@
 package config;
-import com.badlogic.gdx.Gdx;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.io.InputStreamReader;
@@ -9,6 +8,7 @@ public class GameConfig {
 	private static GameConfig instance;
 	private JsonObject config;
 	private static final String CONFIG_FILE_PATH = "config/stats_config.json";
+
 	private final Gson gson;
 	
 	private GameConfig() {
@@ -28,7 +28,7 @@ public class GameConfig {
             config = gson.fromJson(reader, JsonObject.class);  // Parse JSON into JsonObject
             System.out.println("Stats loaded successfully");
         } catch (Exception e) {
-            System.err.println("Error loading configuration for stats" + e.getMessage());
+            System.err.println("Error loading configuration for stats: " + e.getMessage());
             config = new JsonObject();  // Use an empty config as fallback
         }
     }
